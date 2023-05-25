@@ -151,7 +151,7 @@ code {
   box-shadow: inset 0em -0.5em 0 0 var(--rock-gradient-start);
 }
 
-#lizzard{
+#lizard{
   background-color: var(--lizard-gradient-end);
   box-shadow: inset 0em -0.5em 0 0 var(--lizard-gradient-start);
 }

@@ -3,6 +3,7 @@ import iconScissor from '../assets/images/icon-scissors.svg';
 import iconPaper from '../assets/images/icon-paper.svg';
 import iconRock from '../assets/images/icon-rock.svg';
 import iconSpock from '../assets/images/icon-spock.svg';
+import GameChip from './GameChip';
 import { useEffect, useState } from 'react';
 
 
@@ -12,6 +13,7 @@ function RadialSelection(){
 
     const [radialContainerStyles, setRadialContainerStyles] = useState({
         scissorContainerStyle : {
+            'transform' : 'rotate(0)',
             'z-index': '5'
         },
         scissorInnerContainerStyle : {
@@ -50,6 +52,10 @@ function RadialSelection(){
 
         setTimeout(()=>{
             setRadialContainerStyles({
+                scissorContainerStyle : {
+                    'transform' : 'rotate(0)',
+                    'z-index': '5'
+                },
                 paperContainerStyle : {
                     'transform' : 'rotate(72deg)',
                     'z-index' : '4'
@@ -87,6 +93,7 @@ function RadialSelection(){
     }, [isFirstLoad]);
 
     function handleScissorSelect(){
+        console.log("called");
         setRadialContainerStyles({
             scissorContainerStyle : {
                 'transform' : 'rotate(-90deg)',
@@ -235,51 +242,24 @@ function RadialSelection(){
         <div className="radial-selection-container">
 
             <div className="radial-selection-column" style={radialContainerStyles.scissorContainerStyle}>
-                <div className="radial-option-container" id="scissor" style={radialContainerStyles.scissorInnerContainerStyle} onClick={() => handleScissorSelect()}>
-                    <div className="radial-option-inner">
-                        <img src={iconScissor}></img>
-                    </div>
-                </div>
+                
+                <GameChip chipType="scissor" chipStyle={radialContainerStyles.scissorInnerContainerStyle} onClick={() => handleScissorSelect()}/>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.paperContainerStyle}>
-                <div className="radial-option-container" id="paper" style={radialContainerStyles.paperInnerContainerStyle} onClick={()=> handlePaperSelect()}>
-                    <div className="radial-option-inner">
-                        <div className="radial-option-inner">
-                            <img src={iconPaper}></img>
-                        </div>
-                    </div>
-                </div>
+                <GameChip chipType="paper" chipStyle={radialContainerStyles.paperInnerContainerStyle} onClick={() => handlePaperSelect()}/>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.rockContainerStyle}>
-                <div className="radial-option-container" id="rock" style={radialContainerStyles.rockInnerContainerStyle} onClick={()=> handleRockSelect()}>
-                    <div className="radial-option-inner">
-                        <div className="radial-option-inner">
-                            <img src={iconRock}></img>
-                        </div>
-                    </div>
-                </div>
+                <GameChip chipType="rock" chipStyle={radialContainerStyles.rockInnerContainerStyle} onClick={() => handleRockSelect()}/>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.lizardContainerStyle}>
-                <div className="radial-option-container" id="lizzard" style={radialContainerStyles.lizardInnerContainerStyle} onClick={() => handleLizardSelect()}>
-                    <div className="radial-option-inner">
-                        <div className="radial-option-inner">
-                            <img src={iconLizard}></img>
-                        </div>
-                    </div>
-                </div>
+                <GameChip chipType="lizard" chipStyle={radialContainerStyles.lizardInnerContainerStyle} onClick={() => handleLizardSelect()} />
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.spockContainerStyle}>
-                <div className="radial-option-container" id="spock" style={radialContainerStyles.spockInnerContainerStyle} onClick={() => handleSpockSelect()}>
-                    <div className="radial-option-inner">
-                        <div className="radial-option-inner">
-                            <img src={iconSpock}></img>
-                        </div>
-                    </div>
-                </div>
+                <GameChip chipType="spock" chipStyle={radialContainerStyles.spockInnerContainerStyle} onClick={() => handleSpockSelect()} />
             </div>
 
         </div>
