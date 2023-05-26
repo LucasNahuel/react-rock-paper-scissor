@@ -106,7 +106,7 @@ code {
 }
 
 .radial-selection-column{
-  max-height: 500px;
+  max-height: min(100vw, 500px);
   height: 100%;
   width: fit-content;
   position: absolute;
@@ -117,6 +117,7 @@ code {
   right: 0;
   margin: 0 auto;
   transition: transform 0.5s;
+  align-items: center;
 }
 
 .radial-option-container{
@@ -170,4 +171,64 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.play-title-container{
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto auto;
+  max-width: 33em;
+  width: 100%;
+  transform: scaleY(0);
+  transition: transform 0.5s;
+}
+
+.play-title{
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+
+.rival-shadow{
+  display: none;
+  min-width: 7.5em;
+  min-height: 7.5em;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  transform: scale(2);
+}
+
+.game-results{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-result-title{
+  font-size: 3.5em;
+  z-index: 6;
+  margin-block: 0.4em;
+}
+
+.play-again-button{
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  color: var(--dark-text);
+  border-style: none;
+  outline: none;
+  padding: 1em 2em;
+  z-index: 6;
+  border-radius: 0.5em;
+  letter-spacing: 0.2em;
+  font-size: 1em;
+}
+
+.play-again-button:hover{
+  cursor: pointer;
 }

@@ -1,15 +1,34 @@
-import iconLizard from '../assets/images/icon-lizard.svg';
-import iconScissor from '../assets/images/icon-scissors.svg';
-import iconPaper from '../assets/images/icon-paper.svg';
-import iconRock from '../assets/images/icon-rock.svg';
-import iconSpock from '../assets/images/icon-spock.svg';
+
 import GameChip from './GameChip';
+import GameResults from './GameResults';
 import { useEffect, useState } from 'react';
 
 
 function RadialSelection(){
 
+    const gameRules = {
+        "scissor" : {
+            beats : ["paper", "lizard"]
+        },
+        "paper" : {
+            beats : ["rock", "spock"]
+        },
+        "rock" : {
+            beats : ["scissor", "lizard"]
+        },
+        "lizard" : {
+            beats : ["paper", "spock"]
+        },
+        "spock" : {
+            beats : ["rock", "scissor"]
+        }
+    }
+
     const [isFirstLoad, setFirstLoad] = useState(true);
+
+    const [rivalChip, setRivalChip] = useState(null);
+
+    const [gameResult, setGameResult] = useState(null);
 
     const [radialContainerStyles, setRadialContainerStyles] = useState({
         scissorContainerStyle : {
@@ -93,7 +112,6 @@ function RadialSelection(){
     }, [isFirstLoad]);
 
     function handleScissorSelect(){
-        console.log("called");
         setRadialContainerStyles({
             scissorContainerStyle : {
                 'transform' : 'rotate(-90deg)',
@@ -118,8 +136,17 @@ function RadialSelection(){
             spockContainerStyle : {
                 'transform' : 'rotate(-90deg)',
                 'z-index' : '1'
+            },
+            playTitleStyle : {
+                'display' : 'flex',
+                'transform' : 'scaleY(1)'
+            },
+            scissorRivalShadow : {
+                'display' : 'flex'
             }
         });
+
+        throwRivalChip("scissor");
     }
 
     function handlePaperSelect(){
@@ -146,8 +173,16 @@ function RadialSelection(){
             spockContainerStyle : {
                 'transform' : 'rotate(-90deg)',
                 'z-index' : '1'
+            },
+            playTitleStyle : {
+                'display' : 'flex',
+                'transform' : 'scaleY(1)'
+            },
+            paperRivalShadow : {
+                'display' : 'flex'
             }
         });
+        throwRivalChip("paper");
     }
 
     function handleRockSelect(){
@@ -177,8 +212,18 @@ function RadialSelection(){
             },
             spockInnerContainerStyle : {
                 'transform': 'rotate(-288deg)'
+            },
+            playTitleStyle : {
+                'display' : 'flex',
+                'transform' : 'scaleY(1)'
+            },
+            rockRivalShadow : {
+                'display' : 'flex'
             }
         });
+
+        
+        throwRivalChip("rock");
     }
 
     function handleLizardSelect(){
@@ -205,8 +250,18 @@ function RadialSelection(){
             spockContainerStyle : {
                 'transform' : 'rotate(-90deg)',
                 'z-index' : '1'
+            },
+            playTitleStyle : {
+                'display' : 'flex',
+                'transform' : 'scaleY(1)'
+            },
+            lizardRivalShadow : {
+                'display' : 'flex'
             }
         });
+
+        
+        throwRivalChip("lizard");
     }
 
     function handleSpockSelect(){
@@ -233,33 +288,89 @@ function RadialSelection(){
             },
             spockInnerContainerStyle : {
                 'transform' : 'rotate(90deg) scale(2)'
+            },
+            playTitleStyle : {
+                'display' : 'flex',
+                'transform' : 'scaleY(1)'
+            },
+            spockRivalShadow : {
+                'display' : 'flex'
             }
         });
+        
+        throwRivalChip("spock");
+    }
+
+    function throwRivalChip(playerSelectedChip){
+        let rivalSelection;
+        do{
+            let randomNumber = Math.floor(Math.random() * 5);
+            switch(randomNumber){
+                case 0 : rivalSelection = "scissor" ;break;
+                case 1 : rivalSelection = "paper" ;break;
+                case 2 : rivalSelection = "rock" ;break;
+                case 3 : rivalSelection = "lizard" ;break;
+                case 4 : rivalSelection = "spock" ;break;
+                default : console.log("error");
+            }
+        }while( rivalSelection == playerSelectedChip)
+
+        setTimeout(() => {
+            setRivalChip(<GameChip chipType={rivalSelection} chipStyle = {{'transform' : 'rotate(90deg)'}}/>);
+
+            if(gameRules[playerSelectedChip].beats.includes(rivalSelection)){
+                setGameResult(<GameResults result="YOU WIN" style={{'display' : 'flex'}}/>);
+            }else{
+                setGameResult(<GameResults result="YOU LOOSE" style={{'display' : 'flex'}}/>);
+            }
+        }, 2000);
     }
 
 
     return(
         <div className="radial-selection-container">
 
+            <div className='play-title-container' style={radialContainerStyles.playTitleStyle}>
+                <p className='play-title'>YOU PICKED</p>
+                <p className='play-title'>THE HOUSE PICKED</p>
+            </div>
+
+            {gameResult}
+
             <div className="radial-selection-column" style={radialContainerStyles.scissorContainerStyle}>
                 
                 <GameChip chipType="scissor" chipStyle={radialContainerStyles.scissorInnerContainerStyle} onClick={() => handleScissorSelect()}/>
+                <div className='rival-shadow' style={radialContainerStyles.scissorRivalShadow}>
+                    {rivalChip}
+                </div>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.paperContainerStyle}>
                 <GameChip chipType="paper" chipStyle={radialContainerStyles.paperInnerContainerStyle} onClick={() => handlePaperSelect()}/>
+                <div className='rival-shadow' style={radialContainerStyles.paperRivalShadow}>
+                    {rivalChip}
+                </div>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.rockContainerStyle}>
                 <GameChip chipType="rock" chipStyle={radialContainerStyles.rockInnerContainerStyle} onClick={() => handleRockSelect()}/>
+                <div className='rival-shadow' style={radialContainerStyles.rockRivalShadow}>
+                    {rivalChip}
+                </div>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.lizardContainerStyle}>
                 <GameChip chipType="lizard" chipStyle={radialContainerStyles.lizardInnerContainerStyle} onClick={() => handleLizardSelect()} />
+                <div className='rival-shadow' style={radialContainerStyles.lizardRivalShadow}>
+                    {rivalChip}
+                </div>
             </div>
 
             <div className="radial-selection-column" style={radialContainerStyles.spockContainerStyle}>
                 <GameChip chipType="spock" chipStyle={radialContainerStyles.spockInnerContainerStyle} onClick={() => handleSpockSelect()} />
+                <div className='rival-shadow' style={radialContainerStyles.spockRivalShadow}>
+                    {rivalChip}
+                </div>
             </div>
 
         </div>
