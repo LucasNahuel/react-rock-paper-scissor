@@ -1,6 +1,7 @@
 
-
 function Score(){
+
+
     return(
         <div className="score-container">
             <p className="score-title">
@@ -8,7 +9,7 @@ function Score(){
             </p>
 
             <p className="score-value">
-                12
+                {localStorage.getItem("score")}
             </p>
         </div>
     );

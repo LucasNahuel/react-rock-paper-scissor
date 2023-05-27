@@ -3,6 +3,8 @@ import Score from './Score';
 
 function Header(){
 
+    
+
     return(
         <div className="header">
             <ul className="title-list">

@@ -101,7 +101,6 @@ code {
 
 .radial-selection-container{
   position: relative;
-  max-width: 960px;
   height: 100%;
 }
 
@@ -115,7 +114,9 @@ code {
   justify-content: space-between;
   left: 0;
   right: 0;
-  margin: 0 auto;
+  top: 0;
+  bottom: 0;
+  margin: auto auto;
   transition: transform 0.5s;
   align-items: center;
 }
@@ -231,4 +232,20 @@ code {
 
 .play-again-button:hover{
   cursor: pointer;
+}
+
+.radial-selection-column.spaced-out{
+  transition: transform 0.5em;
+  max-height: none;
+}
+
+.pentagon{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+  max-height: min(100vw, 23em);
+  height: 100%;
 }
