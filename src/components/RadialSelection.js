@@ -2,6 +2,7 @@ import pentagon from '../assets/images/bg-pentagon.svg';
 import GameChip from './GameChip';
 import GameResults from './GameResults';
 import { useEffect, useState } from 'react';
+import WinnerHighlight from './WinnerHighlight';
 
 
 function RadialSelection(props){
@@ -71,6 +72,8 @@ function RadialSelection(props){
 
     const [pentagonStyle, setPentagonStyle] = useState(null);
 
+    const [WinnerHighlightState, setWinnerHighlight] = useState(null);
+
     
 
     useEffect(() => {
@@ -119,7 +122,7 @@ function RadialSelection(props){
 
     function handleScissorSelect(){
 
-        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.5)';
+        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.25)';
 
         setRadialContainerStyles({
             scissorContainerStyle : {
@@ -160,7 +163,7 @@ function RadialSelection(props){
 
     function handlePaperSelect(){
 
-        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.5)';
+        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.25)';
 
         setRadialContainerStyles({
             scissorContainerStyle : {
@@ -199,7 +202,7 @@ function RadialSelection(props){
 
     function handleRockSelect(){
 
-        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.5)';
+        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.25)';
 
         setRadialContainerStyles({
             scissorContainerStyle : {
@@ -243,7 +246,7 @@ function RadialSelection(props){
 
     function handleLizardSelect(){
 
-        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.5)';
+        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.25)';
 
         setRadialContainerStyles({
             scissorContainerStyle : {
@@ -284,7 +287,7 @@ function RadialSelection(props){
 
     function handleSpockSelect(){
 
-        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.5)';
+        let relativeScale = window.innerWidth > 768 ? 'rotate(90deg) scale(2)' : 'rotate(90deg) scale(1.25)';
 
         setRadialContainerStyles({
             scissorContainerStyle : {
@@ -351,13 +354,19 @@ function RadialSelection(props){
 
             spaceOutChips();
 
+            
+
             if(gameRules[playerSelectedChip].beats.includes(rivalSelection)){
                 setGameResult(<GameResults result="YOU WIN" style={{'visibility' : 'visible'}}/>);
+                setWinnerHighlight(<WinnerHighlight style={{'bottom' : 'auto'}}/>);
                 localStorage.setItem("score", Number.parseInt(localStorage.getItem("score")) + 1);
             }else{
                 setGameResult(<GameResults result="YOU LOOSE" style={{'visibility' : 'visible'}}/>);
+                setWinnerHighlight(<WinnerHighlight style={{'top' : 'auto'}}/>);
                 localStorage.setItem("score", Number.parseInt(localStorage.getItem("score")) - 1);
             }
+
+            
 
             props.setScore();
 
@@ -387,7 +396,9 @@ function RadialSelection(props){
                 <div className={"radial-selection-column" + radialSpacer} style={radialContainerStyles.scissorContainerStyle} >
                     
                     <GameChip chipType="scissor" chipStyle={radialContainerStyles.scissorInnerContainerStyle} onClick={() => handleScissorSelect()}/>
-                        
+
+                    {WinnerHighlightState}
+
                     <div className='rival-shadow' style={radialContainerStyles.scissorRivalShadow}>
                         {rivalChip}
                     </div>

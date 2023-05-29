@@ -240,6 +240,7 @@ code {
 
 .play-again-button:hover{
   cursor: pointer;
+  color: var(--rock-gradient-start);
 }
 
 .radial-selection-column.spaced-out{
@@ -281,6 +282,26 @@ code {
   height: 100%;
 }
 
+
+.winner-highlight{
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  position: absolute;
+  height: 9em;
+  width: 9em;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+  transition: transform 0.5s;
+  transform: scale(6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+}
+
 @media(max-width: 768px){
   .rules-button{
     margin: 2em auto;
@@ -293,7 +314,7 @@ code {
 
   .play-title-container{
     position: relative;
-    max-width: calc(75vw + 4em);
+    max-width: calc(75vw + 3.5em);
   }
 
   .play-title{
@@ -311,7 +332,7 @@ code {
   .rival-shadow{
     min-width: 6em;
     min-height: 6em;
-    transform: scale(1.5);
+    transform: scale(1.25);
   }
 
   .game-results{
@@ -324,5 +345,31 @@ code {
     height: calc(100% + 10em);
   }
 
+  .score-value{
+    font-size: 2.5em;
+  }
+
+  .score-title{
+    font-size: 0.8em;
+  }
+
+  .score-container{
+    padding: 0.5em 1.5em;
+  }
+
+  .title-list{
+    font-size: 1em;
+  }
   
+  .header{
+    margin: 2em auto;
+  }
+
+  .winner-highlight{
+    width: 7em;
+    height: 7em;
+    transform: scale(3);
+  }
+
+
 }
