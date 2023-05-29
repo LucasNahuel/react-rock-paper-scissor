@@ -27,6 +27,7 @@ function App() {
     <div className='main-container'>
       <Header />
       <RadialSelection setScore = {() => reloadScore()}/>
+      <button className='rules-button'>RULES</button>
     </div>
   );
 }
