@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-family: 'Barlow Semi Condensed', sans-serif;
-  height: 100vh;
+  height: 100%;
   background-image: radial-gradient(circle at 50% 0%, var(--radial-gradient-start), var(--radial-gradient-end));
   color: white;
   -webkit-font-smoothing: antialiased;
