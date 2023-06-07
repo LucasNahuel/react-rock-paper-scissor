@@ -33,17 +33,17 @@ Users should be able to:
 
 Here are my results: 
 
-![desktop](./src/screenshots/rock-paper-scissor-1.png)
+![desktop](./src/assets/screenshots/rock-paper-scissor-1.png)
 
-![desktop](./src/screenshots/rock-paper-scissor-2.png)
+![desktop](./src/assets/screenshots/rock-paper-scissor-2.png)
 
-![desktop](./src/screenshots/rock-paper-scissor-3.png)
+![desktop](./src/assets/screenshots/rock-paper-scissor-3.png)
 
-![mobile](./src/screenshots/rock-paper-scissor-mobile-1.png)
+![mobile](./src/assets/screenshots/rock-paper-scissor-mobile-1.png)
 
-![mobile](./src/screenshots/rock-paper-scissor-mobile-2.png)
+![mobile](./src/assets/screenshots/rock-paper-scissor-mobile-2.png)
 
-![mobile](./src/screenshots/rock-paper-scissor-mobile-3.png)
+![mobile](./src/assets/screenshots/rock-paper-scissor-mobile-3.png)
 
 
 ### Links
